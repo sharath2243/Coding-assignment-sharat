@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 60px;
+        }
+        input {
+            padding: 9px;
+            width: 200px;
+        }
+        button {
+            padding: 8px 13px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #f4f4f4;
+            padding: 8px;
+            margin: 5px auto;
+            width: 250px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .remove-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>To-Do List</h2>
+    <input id="task" placeholder="Enter task...">
+    <button onclick="addTask()">Add</button>
+    <ul id="list"></ul>
+
+    <script>
+        function addTask() {
+            let taskInput = document.getElementById("task");
+            if (!taskInput.value.trim()) return;
+
+            let li = document.createElement("li");
+            li.textContent = taskInput.value;
+
+            let removeBtn = document.createElement("button");
+            removeBtn.textContent = "Remove";
+            removeBtn.className = "remove-btn";
+            removeBtn.onclick = () => li.remove();
+
+            li.appendChild(removeBtn);
+            document.getElementById("list").appendChild(li);
+            
+            taskInput.value = "";
+        }
+    </script>
+
+</body>
+</html>
