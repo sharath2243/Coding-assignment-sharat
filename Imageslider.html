@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 70px;
+        }
+        .slider-container {
+            width: 300px;
+            height: 200px;
+            margin: auto;
+            position: relative;
+        }
+        .slider-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        .buttons {
+            margin-top: 10px;
+        }
+        button {
+            padding: 8px 12px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            background: blue;
+            color: white;
+            border-radius: 5px;
+        }
+        button:disabled {
+            background: gray;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Image Slider</h2>
+    <div class="slider-container">
+        <img id="slider" src="" alt="Image Slider">
+    </div>
+    <div class="buttons">
+        <button id="prev" onclick="prevImage()">prev</button>
+        <button id="next" onclick="nextImage()">next</button>
+    </div>
+
+    <script>
+        // Array of image URLs
+        let images = ["https://imgs.search.brave.com/KdkkT8FyRJcz94AHvgq4eKG0rLW9nklESpXYV6tJBQo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvODQ0/MjI2NTM0L3Bob3Rv/L2xlYWYtYmFja2dy/b3VuZC5qcGc_cz02/MTJ4NjEyJnc9MCZr/PTIwJmM9TjROUFBO/WEZVNWhQY1RoRWJR/LXdyNHk2NHBxU0tt/LXg1QU1EWjBzUEw1/dz0", 
+                      "https://imgs.search.brave.com/_JbbjI5yzMt_44RG1c6NzFfkzjY9bySkNPGnTQ2XLnQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9jYWxtLWZvZ2d5/LW5hdHVyZS1pcGhv/bmUtd2FsbHBhcGVy/LWZyZWUtaW1hZ2Uu/anBlZz93PTYwMCZx/dWFsaXR5PTgw", 
+                      "https://imgs.search.brave.com/FLyHMPq8BMGO2TEJv1yFBGDrEPCHQd0MFPNdYw69BQo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzEyLzYxLzE1LzE3/LzM2MF9GXzEyNjEx/NTE3OTdfVFlySGdp/cVQ4YXF2dGI5Y3Fj/R3BCeDVpdlkyYjc4/QWcuanBn"
+        ];
+
+        let currentIndex = 0;
+
+        // Function to update the image
+        function updateImage() {
+            document.getElementById("slider").src = images[currentIndex];
+
+            // Disable buttons when at first or last image
+            document.getElementById("prev").disabled = (currentIndex === 0);
+            document.getElementById("next").disabled = (currentIndex === images.length - 1);
+        }
+
+        // Function for Next button
+        function nextImage() {
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+                updateImage();
+            }
+        }
+
+        // Function for Previous button
+        function prevImage() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateImage();
+            }
+        }
+
+        // Initialize slider with the first image
+        updateImage();
+    </script>
+
+</body>
+</html>
+
